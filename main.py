@@ -72,12 +72,6 @@ class Hand:
             print(f'Value: {self.getValue()}')
             print()
 
-# deck = Deck()
-# deck.shuffleCards()
-
-# hand = Hand()
-# hand.addCard(deck.dealCards(2))
-# hand.showHand()
 
 # Testing purposes = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
 # newCard = Card('hearts', {"rank": 'A', "value": 11})
@@ -85,3 +79,9 @@ class Hand:
 # newdeck = Deck()
 # newdeck.shuffleCards()
 # print(newdeck.cards)
+
+# deck = Deck()
+# deck.shuffleCards()
+# hand = Hand()
+# hand.addCard(deck.dealCards(2))
+# hand.showHand()
