@@ -11,12 +11,12 @@ class Deck:
                 self.cards.append([suit, rank])
             
     def shuffleCards(self): 
-        if (len(self.cards) > 1):
+        if (len(self.cards) != 0):
             random.shuffle(self.cards)   
     def dealCard(self, num):
             deltCards = []
             for i in range(num):
-                if len(self.cards) > 1: 
+                if len(self.cards) != 0: 
                     deltCards.append(self.cards.pop())
             return deltCards
         
