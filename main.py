@@ -1,4 +1,7 @@
 import random
+import tkinter as tk
+# from tkinter import ttk
+import ttkbootstrap as ttk
 
         
 # Class to create a new card
@@ -71,6 +74,39 @@ class Hand:
                 print(card)
             print(f'Value: {self.getValue()}')
             print()
+            
+# GUI BLACKJACK TESTING
+            
+# def convert():
+#     print(entry.get())
+#     outputString.set(entry.get())
+#     entry.delete(0, tk.END)
+
+# window'
+
+window = ttk.Window(themename = 'vapor')
+window.title('BlackJack Game')
+window.geometry('800x500')
+
+# Title pretty much means text
+titleLabel = ttk.Label(master = window, text = 'Start BlackJack Game', font = ('Arial', 18, 'bold'))
+titleLabel.pack()
+
+# input field
+inputFrame = ttk.Frame(master = window)
+# entry = ttk.Entry(master = inputFrame, )
+button = ttk.Button(master = inputFrame, text = 'Start Game')
+# entry.pack( side = 'left', padx = 10)
+button.pack()
+inputFrame.pack( pady = 10, side = 'bottom')
+
+# output
+outputString = tk.StringVar()
+outputLabel = ttk.Label(master = window, text = 'Output', font = ('Arial', 18), textvariable= outputString)
+outputLabel.pack( pady = 5)
+
+# run main loop (pretty much start the file)
+window.mainloop()
 
 
 # Testing purposes = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
