@@ -179,8 +179,6 @@ class Game:
 g = Game()
 g.play()
         
-        # test
-            
 # GUI BLACKJACK TESTING
             
 # def convert():
