@@ -1,6 +1,7 @@
 import random
 import tkinter as tk
 # from tkinter import ttk
+import time
 import ttkbootstrap as ttk
 
         
@@ -75,6 +76,110 @@ class Hand:
             print(f'Value: {self.getValue()}')
             print()
             
+# class to actually start the game 
+
+class Game:
+    # def __int__(self):
+    def play(self):
+        gameNumber = 0
+        gameAmount = 0
+        
+        try:
+            gameAmount = int(input('How many games would you like to play? '))
+        except:
+            print('Please enter a number')
+            
+        while gameNumber < gameAmount:
+            if gameNumber > 0: time.sleep(2.5)
+                
+            gameNumber += 1
+        
+            gameDeck = Deck()
+            gameDeck.shuffleCards()
+            
+            playerHand = Hand()
+            dealerHand = Hand(house = True)
+            
+            for x in range(2):
+                playerHand.addCard(gameDeck.dealCards(1))
+                dealerHand.addCard(gameDeck.dealCards(1))
+            
+            print()
+            print(f'Game {gameNumber} of {gameAmount}')
+            print('-' * 30)
+            playerHand.showHand()
+            dealerHand.showHand()
+            
+            if self.checkWinner(playerHand, dealerHand):
+                continue
+            
+            choice = " "
+            
+            while playerHand.getValue() < 21 and choice not in ['stand']:
+                choice = input('Would you like to Hit or Stand?: ').lower()
+                print()
+                while choice not in ['hit', 'stand']:
+                    choice = input('Please enter a valid input, inputs can be stand or hit: ')
+                    print()
+                if choice in ['hit']:
+                    playerHand.addCard(gameDeck.dealCards(1))
+                    playerHand.showHand()
+                    
+            if self.checkWinner(playerHand, dealerHand):
+                continue
+            
+            playerValue = playerHand.getValue()
+            dealerValue = dealerHand.getValue()
+            
+            while dealerValue < 17:
+                dealerHand.addCard(gameDeck.dealCards(1))
+                dealerValue = dealerHand.getValue()
+            
+            dealerHand.showHand(showDealer = True)
+            
+            if self.checkWinner(playerHand, dealerHand):
+                continue
+            
+            print('The winner is:')
+            print(f'Player\'s Hand: {playerValue}')
+            print(f'Dealer\'s Hand: {dealerValue}')
+            
+            self.checkWinner(playerHand, dealerHand, gameStatus= True)
+        
+        print('Game Over')
+                
+                
+    def checkWinner(self, playerHand, dealerHand, gameStatus = False):
+        if not gameStatus:
+            if playerHand.getValue() > 21:
+                print('You busted!') 
+                return True
+            if dealerHand.getValue() > 21:
+                print('Dealer busted! You won!') 
+                return True
+            if dealerHand.isBlackJack() and playerHand.isBlackJack():
+                print('Both players have a blackJack! Tie')
+                return True
+            if playerHand.isBlackJack():
+                print('YOu have a blackJack! You won!')
+                return True
+            if dealerHand.isBlackJack():
+                print('Dealer has a blackJack! You lost!')
+                return True
+            return False
+        else:
+            print('testestest', playerHand.getValue, dealerHand.getValue)
+            if playerHand.getValue() > dealerHand.getValue():
+                print('You win')
+            if playerHand.getValue() == dealerHand.getValue():
+                print('It\'s a tie')
+            else:
+                print('Dealer won! You lost!')
+            
+g = Game()
+g.play()
+        
+            
 # GUI BLACKJACK TESTING
             
 # def convert():
@@ -107,17 +212,3 @@ outputLabel.pack( pady = 5)
 
 # run main loop (pretty much start the file)
 window.mainloop()
-
-
-# Testing purposes = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
-# newCard = Card('hearts', {"rank": 'A', "value": 11})
-# print(newCard)
-# newdeck = Deck()
-# newdeck.shuffleCards()
-# print(newdeck.cards)
-
-# deck = Deck()
-# deck.shuffleCards()
-# hand = Hand()
-# hand.addCard(deck.dealCards(2))
-# hand.showHand()
