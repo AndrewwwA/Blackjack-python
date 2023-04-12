@@ -190,24 +190,30 @@ class Game:
 
 window = ttk.Window(themename = 'vapor')
 window.title('BlackJack Game')
-window.geometry('800x500')
+window.geometry('800x600')
+window.iconbitmap('PICTURES/blackjack.ico')
 
 # Title pretty much means text
-titleLabel = ttk.Label(master = window, text = 'Start BlackJack Game', font = ('Arial', 18, 'bold'))
+titleLabel = ttk.Label(master = window, text = 'BlackJack Game', font = ('Arial', 18, 'bold'))
 titleLabel.pack()
 
-# input field
-inputFrame = ttk.Frame(master = window)
-# entry = ttk.Entry(master = inputFrame, )
-button = ttk.Button(master = inputFrame, text = 'Start Game')
-# entry.pack( side = 'left', padx = 10)
-button.pack()
-inputFrame.pack( pady = 10, side = 'bottom')
+# # input field
+gameFrame = ttk.Frame(master = window, relief = 'groove', height = 380, width = 500)
+buttonFrame = ttk.Frame(master = window, relief = 'groove', width = 300, height = 100)
+# # entry = ttk.Entry(master = buttonFrame, )
+# button = ttk.Button(master = buttonFrame, text = 'Start Game')
+# # entry.pack( side = 'left', padx = 10)
+# button.pack()
+gameFrame.place(rely = 0.09, relx = 0.2)
+buttonFrame.place(rely = 0.75, relx = 0.31)
 
-# output
-outputString = tk.StringVar()
-outputLabel = ttk.Label(master = window, text = 'Output', font = ('Arial', 18), textvariable= outputString)
-outputLabel.pack( pady = 5)
+startNewGame = ttk.Button(window, text = 'Reset Game')
+startNewGame.pack(side = 'bottom', pady = 10)
+
+# # output
+# outputString = tk.StringVar()
+# outputLabel = ttk.Label(master = window, text = 'Output', font = ('Arial', 18), textvariable= outputString)
+# outputLabel.pack( pady = 5)
 
 # run main loop (pretty much start the file)
 window.mainloop()
