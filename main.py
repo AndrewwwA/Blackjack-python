@@ -176,8 +176,8 @@ class Game:
             else:
                 print('Dealer won! You lost!')
             
-g = Game()
-g.play()
+# g = Game()
+# g.play()
         
 # GUI BLACKJACK TESTING
             
