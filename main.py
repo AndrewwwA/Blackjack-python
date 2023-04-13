@@ -194,21 +194,44 @@ window.geometry('800x600')
 window.iconbitmap('PICTURES/blackjack.ico')
 
 # Title pretty much means text
-titleLabel = ttk.Label(master = window, text = 'BlackJack Game', font = ('Arial', 18, 'bold'))
+titleLabel = ttk.Label(master = window, text = 'BlackJack Game', font = ('Arial', 18, 'bold'), padding= 10)
 titleLabel.pack()
 
 # # input field
-gameFrame = ttk.Frame(master = window, relief = 'groove', height = 380, width = 500)
+gameFrame = ttk.Frame(window, relief = 'groove', height = 20, width = 100, borderwidth= 10)
 buttonFrame = ttk.Frame(master = window, relief = 'groove', width = 300, height = 100)
 # # entry = ttk.Entry(master = buttonFrame, )
 # button = ttk.Button(master = buttonFrame, text = 'Start Game')
 # # entry.pack( side = 'left', padx = 10)
 # button.pack()
-gameFrame.place(rely = 0.09, relx = 0.2)
-buttonFrame.place(rely = 0.75, relx = 0.31)
+
+buttonFrame.place(rely = 0.7, relx = 0.31)
+
+def create_flex_container(parent, widget_count):
+    parent.grid_rowconfigure(0, weight=1)
+    for column in range(widget_count):
+        parent.grid_columnconfigure(column, weight=1)
+
+    return widget_count
+
+
+widget_count = 2  # Adjust this value to change the number of cards
+container = tk.Frame(gameFrame)
+columns = create_flex_container(container, widget_count)
+container.pack(fill=tk.BOTH, expand=True)
+
+for i in range(widget_count):
+    button = tk.Button(container, text=f"Button {i + 1}")
+    button.grid(row=0, column=i, sticky='nesw')
+
+hitButton = ttk.Button(buttonFrame, text = 'Hit')
+standButton = ttk.Button(buttonFrame, text = 'Stand')
 
 startNewGame = ttk.Button(window, text = 'Reset Game')
-startNewGame.pack(side = 'bottom', pady = 10)
+startNewGame.pack(side = 'bottom', pady = 20)
+
+hitButton.place(relx = 0, rely = 0, relwidth = 0.45, relheight= 1)
+standButton.place(relx = 0.5, rely = 0, relwidth = 0.55, relheight= 1)
 
 # # output
 # outputString = tk.StringVar()
@@ -216,4 +239,5 @@ startNewGame.pack(side = 'bottom', pady = 10)
 # outputLabel.pack( pady = 5)
 
 # run main loop (pretty much start the file)
+gameFrame.pack(side='bottom', expand = True, fill='both', pady = 140, padx = 100 )
 window.mainloop()
