@@ -20,7 +20,7 @@ class Deck:
     def __init__(self):
         self.cards = []
         suits = ['Spades', 'Clubs', 'Hearts', 'Diamonds']
-        ranks = [{"rank": 'A', "value": 11}, {"rank": '', "value": 2}, {"rank": '3', "value": 3}, {"rank": '4', "value": 4}, {"rank": '5', "value": 5}, {"rank": '6', "value": 6}, {"rank": '7', "value": 7}, {"rank": '8', "value": 8}, {"rank": '9', "value": 9}, {"rank": '10', "value": 10}, {"rank": 'J', "value": 10}, {"rank": 'Q', "value": 10}, {"rank": 'K', "value": 10}]
+        ranks = [{"rank": 'A', "value": 11}, {"rank": '2', "value": 2}, {"rank": '3', "value": 3}, {"rank": '4', "value": 4}, {"rank": '5', "value": 5}, {"rank": '6', "value": 6}, {"rank": '7', "value": 7}, {"rank": '8', "value": 8}, {"rank": '9', "value": 9}, {"rank": '10', "value": 10}, {"rank": 'J', "value": 10}, {"rank": 'Q', "value": 10}, {"rank": 'K', "value": 10}]
 
         for suit in suits:
             for rank in ranks:
@@ -176,8 +176,8 @@ class Game:
             else:
                 print('Dealer won! You lost!')
             
-# g = Game()
-# g.play()
+g = Game()
+g.play()
         
 # GUI BLACKJACK TESTING
             
@@ -187,6 +187,11 @@ class Game:
 #     entry.delete(0, tk.END)
 
 # window'
+
+# def startGame():
+#     g = Game()
+#     g.play()
+    
 
 window = ttk.Window(themename = 'vapor')
 window.title('BlackJack Game')
@@ -216,18 +221,18 @@ def create_flex_container(parent, widget_count):
 
 
 widget_count = 2  # Adjust this value to change the number of cards
-container = tk.Frame(gameFrame)
+container = ttk.Frame(gameFrame)
 columns = create_flex_container(container, widget_count)
-container.pack(fill=tk.BOTH, expand=True)
+container.pack(fill='both', expand=True)
 
 for i in range(widget_count):
-    button = tk.Button(container, text=f"Button {i + 1}")
+    button = tk.Button(container, text=f"Card {i + 1}")
     button.grid(row=0, column=i, sticky='nesw')
 
 hitButton = ttk.Button(buttonFrame, text = 'Hit')
 standButton = ttk.Button(buttonFrame, text = 'Stand')
 
-startNewGame = ttk.Button(window, text = 'Reset Game')
+startNewGame = ttk.Button(window, text = 'Reset Game', command = startGame)
 startNewGame.pack(side = 'bottom', pady = 20)
 
 hitButton.place(relx = 0, rely = 0, relwidth = 0.45, relheight= 1)
